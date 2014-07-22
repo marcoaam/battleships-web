@@ -1,0 +1,6 @@
+require './lib/cell'
+require './lib/water'
+require './lib/ship'
+require './lib/coordinates'
+require './lib/board'
+require './lib/player'
