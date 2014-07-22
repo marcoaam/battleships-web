@@ -4,6 +4,7 @@ require_relative 'board'
 require_relative 'coordinates'
 require_relative 'ship'
 require_relative 'water'
+require_relative 'cell'
 
 class BattleShips < Sinatra::Base
 
@@ -21,7 +22,9 @@ class BattleShips < Sinatra::Base
   	if params[:player1_name] == ""
   		redirect to("/new_game")
 	  else
-	  	@player1 = Player.new(name: params[:player1_name], board: Board.new)
+	  	@player1 = Player.new(name: params[:player1_name], board: Board.new(content: Water.new))
+	  	@player1.shoot_at(@player1.board, "A1")
+	  	@board = @player1.board.render_display
 	  	erb :players
 	  end
   end
