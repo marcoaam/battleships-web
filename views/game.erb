@@ -4,11 +4,19 @@
 	<title>
 		Battleships
 	</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	Hi <strong><%=session[:player1].name%></strong> lets play Battleships!!!<br>
 	You have <strong><%=session[:player1].ships_to_deploy.count%></strong> ships to deploy
-	<br>
-	<a href='/game'><button type="button">Start</button></a>
+	<table>
+		<% @board.each do |row| %>
+			<tr>
+				<% row.each do |col| %>
+					<td> <%=col %> </td>
+					<% end %>
+			</tr>
+		<% end %>
+	</table>
 </body>
 </html>
