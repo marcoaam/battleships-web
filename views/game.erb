@@ -1,14 +1,5 @@
 <p>Hi <strong><%=session[:player1].name%></strong> lets play Battleships!!!<br>
-You have <strong><%=session[:player1].ships_to_deploy.count%></strong> ships to deploy</p><br>
-	<table>
-		<% @board.each do |row| %>
-			<tr>
-				<% row.each do |col| %>
-					<td> <%=col %> </td>
-					<% end %>
-			</tr>
-		<% end %>
-	</table>
+	<%=erb :board%>
 	<% if session[:player1].ships_to_deploy.count == 0%>
 		<%=erb :shoot_at%>
 	<%else%>

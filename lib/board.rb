@@ -27,7 +27,7 @@ class Board
 	private
 
 	def rows_of_cells
-		grid.values.map{|cell| cell.status}
+		grid.values.map{|cell| cell}
 	end
 	
 	def create_new_grid_with(content)

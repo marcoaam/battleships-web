@@ -1,10 +1,13 @@
 body {
-	background-color: blue
+	background-color: blue;
+	text-align: center;
+	background-image: url('../images/battle.jpg');
 }
 
 p {
 	color: #ffffff;
 	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
 }
 
 h1 {
@@ -15,7 +18,28 @@ strong {
 	color: #ffffff;
 }
 
-table, th, td {
-   border: 2px solid white;
-   padding: 10px
+table {
+   padding: 10px;
+   text-align: center;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 12px;
+   color: red;
+   table-layout: fixed;
+   width: 300px;
+   height: 300px;
+}
+
+th {
+	border: 2px solid white;
+	table-layout: fixed;
+	width: 15px;
+	height: 15px;
+}
+
+td {
+	border: 2px solid white;
+	table-layout: fixed;
+	color: cyan;
+	width: 15px;
+	height: 15px;
 }

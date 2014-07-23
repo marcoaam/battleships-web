@@ -1,0 +1,27 @@
+	<table align="center">
+		<th></th>
+		<%(1..10).each do |head| %>
+		<th><%=head%></th>
+		<%end%>
+		<% @board.each_with_index do |row, index| %>
+			<tr><th><%=(index + 65).chr%></th>
+				<% row.each do |col| %>
+					<td><%=col.status %></td>
+					<% end %>
+			</tr>
+		<% end %>
+	</table>
+
+		<table align="center">
+		<th></th>
+		<%(1..10).each do |head| %>
+		<th><%=head%></th>
+		<%end%>
+		<% @opponent_board.each_with_index do |row, index| %>
+			<tr><th><%=(index + 65).chr%></th>
+				<% row.each do |col| %>
+					<td><%=col.status %></td>
+					<% end %>
+			</tr>
+		<% end %>
+	</table>
