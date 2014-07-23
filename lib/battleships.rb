@@ -32,10 +32,20 @@ class BattleShips < Sinatra::Base
   end
 
   get '/game' do
-  	session[:player1].shoot_at(session[:player1].board, "A1")
-	  session[:player1].shoot_at(session[:player1].board, "A2")
 	  @board = session[:player1].board.render_display
   	erb :game
+  end
+
+  post '/place_ships' do
+    session[:player1].shoot_at(session[:player1].board, params[:coordinate] )
+    @board = session[:player1].board.render_display
+    erb :game
+  end
+  
+  post '/shoot_at' do
+    session[:player1].shoot_at(session[:player1].board, params[:coordinate] )
+    @board = session[:player1].board.render_display
+    erb :game
   end
 
   # start the server if ruby file executed directly

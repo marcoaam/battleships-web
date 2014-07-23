@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>
-		Battleships
-	</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-	Hi <strong><%=session[:player1].name%></strong> lets play Battleships!!!<br>
-	You have <strong><%=session[:player1].ships_to_deploy.count%></strong> ships to deploy
+<p>Hi <strong><%=session[:player1].name%></strong> lets play Battleships!!!<br>
+You have <strong><%=session[:player1].ships_to_deploy.count%></strong> ships to deploy</p><br>
 	<table>
 		<% @board.each do |row| %>
 			<tr>
@@ -18,5 +9,8 @@
 			</tr>
 		<% end %>
 	</table>
-</body>
-</html>
+	<% if session[:player1].ships_to_deploy.count == 0%>
+		<%=erb :shoot_at%>
+	<%else%>
+		<%=erb :place_ships%>
+	<%end%>

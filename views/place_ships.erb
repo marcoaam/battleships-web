@@ -1,0 +1,5 @@
+<p>Enter the coordinate that you want to shoot at</p>
+<form id="ship_coordinates" name="ship_coordinates" action="place_ships" method="post">
+	<%session[:player1].ships_to_deploy.pop.remaining_hits.times { %> <input id="player_name" name="ship_coordinate"> <%}%>
+	<input type="submit" value="Place ship">
+</form>
