@@ -10,6 +10,7 @@ class Game
 
 	def add(player)
 		@players << player
+		player
 	end
 
 	def start?
@@ -17,7 +18,7 @@ class Game
 	end
 
 	def return_opponent(player)
-		players.reject {|other_player| other_player == player}.first
+		players.reject {|other_player| other_player.object_id == player.object_id }.first
 	end
 
 end
