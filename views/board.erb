@@ -1,4 +1,15 @@
-	<table align="center">
+	
+
+
+
+	<!-- Main Table(You can define padding accordingly) -->
+<table width="600px" border="0" cellspacing="0" cellpadding="5" align="center">
+<tr>
+<td width="50%">
+
+<!-- Table on left side -->
+<p>Your board</p>
+	<table width="300px" height="300px">
 		<th></th>
 		<%(1..10).each do |head| %>
 		<th><%=head%></th>
@@ -10,9 +21,13 @@
 					<% end %>
 			</tr>
 		<% end %>
-	</table>
+	</table><br>
+<!-- END -->
+</td>
+<td width="50%">
 
-	<table align="center">
+	<p><%=@opponent.name%>'s board.</p>
+	<table width="300px" height="300px">
 		<th></th>
 		<%(1..10).each do |head| %>
 		<th><%=head%></th>
@@ -25,3 +40,5 @@
 			</tr>
 		<% end %>
 	</table>
+
+</table>

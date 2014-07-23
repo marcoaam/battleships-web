@@ -1,6 +1,6 @@
-<p>Hi <strong><%=session[:player1].name%></strong> lets play Battleships!!!<br>
+<p>Hi <strong><%=@player.name%></strong> lets play Battleships!!!<br>
 	<%=erb :board%>
-	<% if session[:player1].ships_to_deploy.count == 0%>
+	<% if @player.ships_to_deploy.count == 0%>
 		<%=erb :shoot_at%>
 	<%else%>
 		<%=erb :place_ships%>

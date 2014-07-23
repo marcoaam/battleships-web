@@ -1,5 +1,5 @@
-<p>Hi <strong><%=session[:player1].name%></strong> lets play Battleships!!!<br>
-	You have <strong><%=session[:player1].ships_to_deploy.count%></strong> ships to deploy</p>
+<p>Hi <strong><%=@player.name%></strong> lets play Battleships!!!<br>
+	You have <strong><%=@player.ships_to_deploy.count%></strong> ships to deploy</p>
 	<br>
 	<a href='/game'><button type="button">Start the game</button></a>
 </body>

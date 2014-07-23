@@ -2,7 +2,7 @@ require './files'
 
 class Game
 
-	attr_reader :players
+	attr_accessor :players
 
 	def initialize
 		@players = []
@@ -10,7 +10,6 @@ class Game
 
 	def add(player)
 		@players << player
-		player
 	end
 
 	def start?
@@ -18,7 +17,11 @@ class Game
 	end
 
 	def return_opponent(player)
-		players.reject {|other_player| other_player.object_id == player.object_id }.first
+		@players.reject { |other_player| other_player.name == player.name || other_player.object_id == player.object_id }.first
+	end
+
+	def return(player_name)
+		@players.select { |stored_player| stored_player.name == player_name }.first
 	end
 
 end

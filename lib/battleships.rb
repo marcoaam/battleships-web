@@ -9,7 +9,6 @@ require_relative 'game'
 
 class BattleShips < Sinatra::Base
 
-	set :session_secret, 'Marco'
 	enable :sessions
 	set :views, './views/'
   set :public_dir, './public/'
@@ -25,8 +24,8 @@ class BattleShips < Sinatra::Base
   end
 
   post '/players' do
-	  	session[:player1] = Player.new(name: params[:player1_name], board: Board.new(content: Water.new))
-      GAME.add(session[:player1])
+	  	session[:player_name] = params[:player1_name]
+      GAME.add(Player.new(name: session[:player_name], board: Board.new(content: Water.new)))
 	  	if GAME.start?
         redirect to('/game')
       else
@@ -36,7 +35,6 @@ class BattleShips < Sinatra::Base
 
   get '/waiting_room' do
     if GAME.start?
-      @opponent = GAME.return_opponent(session[:player1])
       redirect to('/game')
     else
       erb :waiting_room
@@ -44,31 +42,34 @@ class BattleShips < Sinatra::Base
   end
 
   get '/game' do
-	  @board = session[:player1].board.render_display
-    @opponent = GAME.return_opponent(session[:player1])
+    @player = GAME.return(session[:player_name])
+	  @board = @player.board.render_display
+    @opponent = GAME.return_opponent(@player)
     @opponent_board = @opponent.board.render_display
   	erb :game
   end
 
   get '/place_ships' do
     @coordinates = Coordinates.new(params.values)
-    @opponent = GAME.return_opponent(session[:player1])
+    @player = GAME.return(session[:player_name])
+    @opponent = GAME.return_opponent(@player)
     if @coordinates.valid? && !params.values.include?(nil)
-      session[:player1].board.place(session[:player1].ships_to_deploy.pop, @coordinates)
-      @board = session[:player1].board.render_display
+      @player.board.place(@player.ships_to_deploy.pop, @coordinates)
+      @board = @player.board.render_display
       @opponent_board = @opponent.board.render_display
       erb :game
     else
-      @board = session[:player1].board.render_display
+      @board = @player.board.render_display
       @opponent_board = @opponent.board.render_display
       erb :game
     end
   end
   
   post '/shoot_at' do
-    @opponent = GAME.return_opponent(session[:player1])
-    session[:player1].shoot_at(@opponent.board, params[:coordinate] )
-    @board = session[:player1].board.render_display
+    @player = GAME.return(session[:player_name])
+    @opponent = GAME.return_opponent(@player)
+    @player.shoot_at(@opponent.board, params[:coordinate] )
+    @board = @player.board.render_display
     @opponent_board = @opponent.board.render_display
     erb :game
   end
