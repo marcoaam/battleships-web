@@ -1,5 +1,5 @@
 <p>Hi <strong><%=@player.name%></strong> lets play Battleships!!!<br>
-	<%=erb :board%>
+
 	<% if GAME.all_ships_deployed?%>
 		<%=erb :shoot_at%>
 	<%else%>
@@ -9,3 +9,6 @@
 			<%=erb :place_ships%>
 		<%end%>
 	<%end%>
+	
+	<%=erb :board%>
+	

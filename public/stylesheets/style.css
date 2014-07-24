@@ -41,3 +41,7 @@ td {
 	width: 15px;
 	height: 15px;
 }
+
+.ship {
+	background-color: gray;
+}

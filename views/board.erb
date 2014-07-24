@@ -17,7 +17,10 @@
 		<% @board.each_with_index do |row, index| %>
 			<tr><th><%=(index + 65).chr%></th>
 				<% row.each do |col| %>
-					<td><%=col.status %></td>
+					<td <%if col.status == "S" %>
+									class=<%="ship"%>
+									<%end%>>
+								<%=col.status %></td>
 					<% end %>
 			</tr>
 		<% end %>
@@ -35,7 +38,10 @@
 		<% @opponent_board.each_with_index do |row, index| %>
 			<tr><th><%=(index + 65).chr%></th>
 				<% row.each do |col| %>
-					<td><%=col.status %></td>
+					<td <%if col.status == "S" %>
+									class=<%="ship"%>
+									<%end%>>
+								<%=col.status %></td>
 					<% end %>
 			</tr>
 		<% end %>
