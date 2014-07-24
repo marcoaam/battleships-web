@@ -41,6 +41,14 @@ class BattleShips < Sinatra::Base
     end
   end
 
+  get '/ships_waiting' do
+    if GAME.all_ships_deployed?
+      redirect to('/game')
+    else
+      erb :ships_waiting
+    end
+  end
+
   get '/game' do
     @player = GAME.return(session[:player_name])
 	  @board = @player.board.render_display
@@ -69,10 +77,14 @@ class BattleShips < Sinatra::Base
   post '/shoot_at' do
     @player = GAME.return(session[:player_name])
     @opponent = GAME.return_opponent(@player)
-    @player.shoot_at(@opponent.board, params[:coordinate] )
     @board = @player.board.render_display
     @opponent_board = @opponent.board.render_display
-    erb :game
+    if GAME.has_ships_floating?(@player) && GAME.has_ships_floating?(@opponent)
+      @player.shoot_at(@opponent.board, params[:coordinate] )
+      erb :game
+    else
+      erb :game_over
+    end
   end
 
   post '/new_game' do

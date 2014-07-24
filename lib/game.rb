@@ -28,4 +28,12 @@ class Game
 		players.each { |player| player.board.grid.values.any?{|cell| cell.status == 'S'} }
 	end
 
+	def all_ships_deployed?
+		@players.first.ships_to_deploy.count == 0 && @players.last.ships_to_deploy.count == 0 
+	end
+
+	def has_ships_floating?(player)
+		player.board.grid.values.any?{|cell| cell.status == 'S'}
+	end
+
 end

@@ -1,7 +1,11 @@
 <p>Hi <strong><%=@player.name%></strong> lets play Battleships!!!<br>
 	<%=erb :board%>
-	<% if @player.ships_to_deploy.count == 0%>
+	<% if GAME.all_ships_deployed?%>
 		<%=erb :shoot_at%>
 	<%else%>
-		<%=erb :place_ships%>
+		<% if @player.ships_to_deploy.count == 0 %>
+			<%=erb :ships_waiting%>
+		<%else%>
+			<%=erb :place_ships%>
+		<%end%>
 	<%end%>
