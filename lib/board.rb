@@ -24,6 +24,24 @@ class Board
 		render_display.each{|row| p row}
 	end
 
+	def get_coordinates_for(ship, coordinate, running)
+		if running == 'horizontal'
+			horizontal(ship, coordinate)
+		else
+			vertical(ship, coordinate)
+		end
+	end
+
+	def vertical(ship, coordinate)
+		coordinate_letter, coordinate_number = coordinate.chars.first, coordinate.chars.last
+		(0...ship.remaining_hits).map { |number| (coordinate_letter.bytes.first + number).chr + coordinate_number }
+	end
+
+	def horizontal(ship, coordinate)
+		coordinate_letter, coordinate_number = coordinate.chars.first, coordinate.chars.last.to_i
+		(0...ship.remaining_hits).map { |number| coordinate_letter + (coordinate_number + number).to_s }
+	end
+
 	private
 
 	def rows_of_cells

@@ -1,6 +1,8 @@
 <p>Fill in the coordinates where you want to place your <%=@player.ships_to_deploy.last.class.name%><br>
 You have <strong><%=@player.ships_to_deploy.count%></strong> ships to deploy</p>
 <form id="ship_coordinates" name="ship_coordinates" action="place_ships" method="get">
-	<%@player.ships_to_deploy.last.remaining_hits.times { %> <input id="player_name" name=<%=rand(1000).to_s%> size="3" maxlength="3"> <%}%>
+	<input id="player_name" name="coordinate" size="3" maxlength="3">
+	<input type="radio" name="orientation" value="horizontal" checked>Horizontal
+	<input type="radio" name="orientation" value="vertical">Vertical
 	<input type="submit" value="Place ship">
 </form>

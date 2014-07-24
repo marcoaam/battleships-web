@@ -50,8 +50,9 @@ class BattleShips < Sinatra::Base
   end
 
   get '/place_ships' do
-    @coordinates = Coordinates.new(params.values)
     @player = GAME.return(session[:player_name])
+    @coordinate = @player.board.get_coordinates_for(@player.ships_to_deploy.last, params[:coordinate], params[:orientation])
+    @coordinates = Coordinates.new(@coordinate)
     @opponent = GAME.return_opponent(@player)
     if @coordinates.valid? && !params.values.include?(nil)
       @player.board.place(@player.ships_to_deploy.pop, @coordinates)
