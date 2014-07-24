@@ -75,6 +75,11 @@ class BattleShips < Sinatra::Base
     erb :game
   end
 
+  post '/new_game' do
+    GAME.players = []
+    redirect to('/new_game')
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
